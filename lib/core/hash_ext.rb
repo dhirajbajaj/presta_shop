@@ -1,20 +1,9 @@
 class Hash
-    def except(*keys)
-        dup.except! *keys
-    end
-
-    def except!(*keys)
-        keys.each do |key| 
-            delete key
-        end
-        self
-    end
-    
-    def xml_node_to_hash(node)
-      # If we are at the root of the document, start the hash 
+    def self.xml_node_to_hash(node)
+     # If we are at the root of the document, start the hash 
       if node.element?
         result_hash = {}
-        if node.attributes != {}
+            if node.attributes != {}
           attributes = {}
           node.attributes.keys.each do |key|
             attributes[node.attributes[key].name.to_sym] = node.attributes[key].value
@@ -52,6 +41,17 @@ class Hash
       else
         return node.content.to_s
       end
+    end
+    
+    def except(*keys)
+        dup.except! *keys
+    end
+
+    def except!(*keys)
+        keys.each do |key| 
+            delete key
+        end
+        self
     end
 
 end

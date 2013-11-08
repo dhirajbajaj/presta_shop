@@ -1,4 +1,4 @@
-class Hash
+Hash.class_eval do 
     def except(*keys)
         dup.except! *keys
     end
